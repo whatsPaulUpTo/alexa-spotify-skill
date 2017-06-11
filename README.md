@@ -1,1 +1,1 @@
-# alexa-spotify-skill
+###Developing Spotify skill for Alexa
