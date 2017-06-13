@@ -1,6 +1,5 @@
 'use strict';
 module.change_code = 1;
-var _ = require('lodash');
 var Alexa = require('alexa-app');
 var app = new Alexa.app('music-mastermind');
 var rp = require('request-promise');
@@ -36,16 +35,16 @@ app.launch(function(req, res) {
 // *** MAIN INTENT ***
 app.intent('getKeyAndTempo', {
 		'slots': {
-			'SONGNAME': 'SONGNAMES' //do i need to define a value for this key? how so if it could be anything?
+			'SONGNAME': 'SONGNAMES'
 		},
-		'utterances': ['{|what|tell} {|is|me} {|the} {|key|tempo|bpm|beats per minute} {|and} {|key|tempo|bpm|beats per minute} {|info|information} {|of|for} {-|SONGNAME}']
+		'utterances': ['{|about|for} {-|SONGNAME}']
 	}, 
 	function(req, res) {
 		//get the slot
 		songName = req.slot('SONGNAME');
 		var reprompt = 'Tell me the name of the song you want to know the key and tempo for.';
 
-		if (_.isEmpty(songName)) {
+		if (songName == '') {
 			var prompt = 'I didn\'t hear a song name. Tell me a song name.';
 			res.say(prompt).reprompt(reprompt).shouldEndSession(false);
 			return true;
@@ -63,7 +62,6 @@ app.intent('getKeyAndTempo', {
       		).catch(function(err) {
 				console.log(err.statusCode);
 				var prompt = 'I couldn\'t find information for ' + songName;
-				//https://github.com/matt-kruse/alexa-app/blob/master/index.js#L171
 				res.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
 			})
 			//Alexa says answer
@@ -102,13 +100,13 @@ function getAnalysis(song) {
 
 function formatResponse(analysis) {
 	songAnalysis = analysis;
-	var saySong = songObj.tracks.items[0].album.name;
+	var saySong = songObj.tracks.items[0].name;
 	var sayArtist = formatArtist(songObj.tracks.items[0].artists);
 	var sayTempo = Math.round(songAnalysis.track.tempo);
 	var sayKey = formatKey(songAnalysis);
 
 	alexaResponse = 'Here\'s what I got for ' 
-					+ saySong + ' by ' + sayArtist 
+					+ saySong + ', by ' + sayArtist 
 					+ '. It is in the key of ' + sayKey 
 					+ ', and it has a tempo of ' + sayTempo + ' beats per minute.';
 };
@@ -122,9 +120,9 @@ function formatArtist(artists) {
 	var artistStr;
 	for (var i = 0; i < artists.length; i++) {
 		if (artists[i-1] && !artists[i+1]) {
-			artistStr += '& ';
+			artistStr += 'and ';
 		};
-		artistStr += artists[i];
+		artistStr += artists[i].name;
 		if (artists[i+1]) {
 			artistStr += ', ';
 		};

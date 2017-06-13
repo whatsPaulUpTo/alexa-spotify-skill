@@ -1,0 +1,22 @@
+{|what|tell} {|is|me} {|the} {|key|tempo|bpm|beats per minute} {|and} {|key|tempo|bpm|beats per minute} {|info|information} {|of|for} {-|SONGNAME}
+
+what is the
+
+tell me the key of
+tell me the tempo of
+tell me the beats per minute of
+tell me the key for
+tell me the tempo for
+tell me the beats per minute for
+tell me the key and tempo of
+tell me the tempo and key of
+tell me the
+tell me the
+tell me the
+tell me the
+tell me the
+tell me the
+tell me the
+tell me the
+
+{songName}
