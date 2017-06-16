@@ -52,7 +52,7 @@ app.intent('getKeyAndTempo', {
 
 			// Main app logic goes here
 			//get token
-			request.post(authOptions, function(error, response, body) {
+			return request.post(authOptions, function(error, response, body) {
 				if (!error && response.statusCode === 200) {
 					var token = body.access_token;
 
