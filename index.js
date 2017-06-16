@@ -53,7 +53,7 @@ app.intent('getKeyAndTempo', {
 			// Main app logic goes here
 
 			//retrieve authorization token from Spotify
-			rp(authOptions).then(function(body) {
+			return rp(authOptions).then(function(body) {
         		token = body.access_token;
       		}
       		).then(getSongObj
