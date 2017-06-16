@@ -2,4 +2,6 @@
 
 #### in progress...
 
-current issue with length of time spotify API call takes. ALexa is timing out or returning undefined data.
+TODO:
+- promisify API calls so Alexa resonse waits to fulfilled
+- flesh out other Alexa intents (help, stop, etc)
