@@ -3,5 +3,6 @@
 #### in progress...
 
 TODO:
-- promisify API calls so Alexa resonse waits to fulfilled
-- flesh out other Alexa intents (help, stop, etc)
+- test query strings to check for incorrectly triggered intents
+- eg. ask music mastermind about help => should return help intent
+- ask music mastermind to tell me about help => should return results for song "help"
